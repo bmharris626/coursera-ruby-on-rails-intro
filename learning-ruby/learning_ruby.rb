@@ -119,3 +119,27 @@ def two_times_explicit (&i_am_a_block)
   i_am_a_block.call
   i_am_a_block.call
 end
+
+# Reading from a file
+File.foreach("test.txt") do |line|
+  puts line
+  p line
+  p line.chomp #chops off newline character
+  p line.split #array of words in line
+end
+
+#Handling exception
+begin
+  File.foreach("does_not_exist.txt") do |line|
+    puts line.chomp
+  end
+rescue Exception => e
+  puts e.message
+  puts "Let's pretend this didn't happen..."
+end
+
+# Writing to a file
+File.open("test_out.txt", "w") do |file|
+  file.puts "One Line"
+  file.puts "Another"
+end
